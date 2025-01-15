@@ -35,11 +35,11 @@ Task Comments/Attachments: Allow users to add comments or attachments to tasks f
 
 ## Time Spent
 
-- **Project Setup**: 1.5 hours
+- **Project Setup**: 1 hours
   - Initial setup with Vite and React.
   - Configuring TypeScript support.
 
-- **UI Design and Layout**: 3 hours
+- **UI Design and Layout**: 3.5 hours
   - Designing the Kanban board layout.
   - Styling the columns and task cards.
 
