@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Main layout styles */
+html, body, #root {
+  @apply bg-mainBackgroundColor text-textColor box-border;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-scrollbarColor rounded-xl;
+}
+
+/* Task-specific scrollbar thumb */
+.task > ::-webkit-scrollbar-thumb {
+  @apply bg-taskScrollbarThumb rounded-xl;
+}
+
+/* Column background styling */
+.column {
+  @apply bg-columnBackgroundColor shadow-md rounded-lg p-4;
+}
+
+/* Task card styling */
+.task {
+  @apply bg-taskBackgroundColor shadow-sm rounded-md p-3;
+}
+
+/* Buttons styling */
+button {
+  @apply bg-buttonBackground text-textColor px-4 py-2 rounded-lg hover:bg-accentColor transition-all duration-200;
+}
+
+/* Highlight and accent styles */
+.highlight {
+  @apply text-accentColor font-semibold;
+}
+
+/* Utility for additional padding */
+.spacing {
+  @apply p-2;
+}
