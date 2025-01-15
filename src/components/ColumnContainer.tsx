@@ -28,7 +28,7 @@ function ColumnContainer(props: Props) {
     updateTask,
   } = props;
 
-  const [editMode, setEditMode] = useState(false);
+  const [editMode, setEditMode] = useState(false); // State to manage column title editing mode
 
   const tasksIds = useMemo(() => {
     return tasks.map((task) => task.id);
@@ -42,12 +42,13 @@ function ColumnContainer(props: Props) {
     transition,
     isDragging,
   } = useSortable({
+    // Using `useSortable` hook for drag-and-drop functionality on the column
     id: column.id,
     data: {
       type: "Column",
       column,
     },
-    disabled: editMode,
+    disabled: editMode, // Disabling dragging while in edit mode
   });
 
   const style = {
@@ -95,7 +96,7 @@ function ColumnContainer(props: Props) {
         {...attributes}
         {...listeners}
         onClick={() => {
-          setEditMode(true);
+          setEditMode(true); // Clicking on the column header enables the edit mode for the title
         }}
         className="
         bg-taskBackgroundColor

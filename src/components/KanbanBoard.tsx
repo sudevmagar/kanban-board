@@ -17,19 +17,24 @@ import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
 
 function KanbanBoard() {
+  // Helper function to generate a random ID
+  function generateId() {
+    return Math.floor(Math.random() * 10001);
+  }
+
   const predefinedColumns: Column[] = [
-    { id: 1, title: "TODO" },
-    { id: 2, title: "Work in Progress" },
-    { id: 3, title: "Tasks Done" },
+    { id: generateId(), title: "TODO" },
+    { id: generateId(), title: "Work in Progress" },
+    { id: generateId(), title: "Tasks Done" },
   ];
 
   const predefinedTasks: Task[] = [
-    { id: 1, columnId: 1, content: "Define project scope" },
-    { id: 2, columnId: 1, content: "Gather requirements" },
-    { id: 3, columnId: 2, content: "Develop wireframes" },
-    { id: 4, columnId: 2, content: "Set up backend API" },
-    { id: 5, columnId: 3, content: "Complete initial design" },
-    { id: 6, columnId: 3, content: "Submit MVP for review" },
+    { id: generateId(), columnId: predefinedColumns[0].id, content: "Define project scope" },
+    { id: generateId(), columnId: predefinedColumns[0].id, content: "Gather requirements" },
+    { id: generateId(), columnId: predefinedColumns[1].id, content: "Develop wireframes" },
+    { id: generateId(), columnId: predefinedColumns[1].id, content: "Set up backend API" },
+    { id: generateId(), columnId: predefinedColumns[2].id, content: "Complete initial design" },
+    { id: generateId(), columnId: predefinedColumns[2].id, content: "Submit MVP for review" },
   ];
 
   const [columns, setColumns] = useState<Column[]>(() => {
@@ -40,6 +45,11 @@ function KanbanBoard() {
   const [tasks, setTasks] = useState<Task[]>(() => {
     const savedTasks = localStorage.getItem("kanban_tasks");
     return savedTasks ? JSON.parse(savedTasks) : predefinedTasks;
+  });
+
+  const [columnCounter, setColumnCounter] = useState(() => {
+    const savedCounter = localStorage.getItem("kanban_column_counter");
+    return savedCounter ? parseInt(savedCounter, 10) : predefinedColumns.length;
   });
 
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
@@ -63,6 +73,10 @@ function KanbanBoard() {
   useEffect(() => {
     localStorage.setItem("kanban_tasks", JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem("kanban_column_counter", columnCounter.toString());
+  }, [columnCounter]);
 
   return (
     <div
@@ -155,19 +169,18 @@ function KanbanBoard() {
     </div>
   );
 
+  // Function to create a new column and update the state
   function createNewColumn() {
     const columnToAdd: Column = {
       id: generateId(),
-      title: `Column ${columns.length + 1}`,
+      title: `Column ${columnCounter + 1}`,
     };
 
     setColumns([...columns, columnToAdd]);
+    setColumnCounter((prev) => prev + 1);
   }
 
-  function generateId() {
-    return Math.floor(Math.random() * 10001);
-  }
-
+  // Function to create a task in the specified column
   function createTask(columnId: Id) {
     const newTask: Task = {
       id: generateId(),
@@ -177,11 +190,13 @@ function KanbanBoard() {
     setTasks([...tasks, newTask]);
   }
 
+  // Function to delete a task
   function deleteTask(id: Id) {
     const newTask = tasks.filter((task) => task.id !== id);
     setTasks(newTask);
   }
 
+  // Function to update task content
   function updateTask(id: Id, content: string) {
     const newTasks = tasks.map((task) => {
       if (task.id !== id) return task;
@@ -191,6 +206,7 @@ function KanbanBoard() {
     setTasks(newTasks);
   }
 
+  // Function to delete a column and associated tasks
   function deleteColumn(id: Id) {
     const filteredColumns = columns.filter((col) => col.id !== id);
     setColumns(filteredColumns);
@@ -199,6 +215,7 @@ function KanbanBoard() {
     setTasks(newTasks);
   }
 
+  // Function to update a column's title
   function updateColumn(id: Id, title: string) {
     const newColumns = columns.map((col) => {
       if (col.id !== id) return col;
@@ -208,6 +225,7 @@ function KanbanBoard() {
     setColumns(newColumns);
   }
 
+  // Handler for when drag starts (sets the active column or task)
   function onDragStart(event: DragStartEvent) {
     if (event.active.data.current?.type === "Column") {
       setActiveColumn(event.active.data.current.column);
@@ -220,6 +238,7 @@ function KanbanBoard() {
     }
   }
 
+  // Handler for when drag ends (moves column or task to new position)
   function onDragEnd(event: DragEndEvent) {
     setActiveColumn(null);
     setActiveTask(null);
@@ -233,6 +252,7 @@ function KanbanBoard() {
 
     if (activeId === overId) return;
 
+    // Reordering columns
     setColumns((columns) => {
       const activeColumnIndex = columns.findIndex(
         (col) => col.id === activeId
@@ -246,6 +266,7 @@ function KanbanBoard() {
     });
   }
 
+  // Handler for drag over (determines where the task or column should be moved)
   function onDragOver(event: DragOverEvent) {
     const { active, over } = event;
 
@@ -259,6 +280,7 @@ function KanbanBoard() {
     const isActiveATask = active.data.current?.type === "Task";
     const isOverATask = over.data.current?.type === "Task";
 
+    // Handling task-to-task movement
     if (isActiveATask && isOverATask) {
       setTasks((tasks) => {
         const activeIndex = tasks.findIndex((t) => t.id === activeId);
@@ -272,6 +294,7 @@ function KanbanBoard() {
 
     const isOverAColumn = over.data.current?.type === "Column";
 
+    // Handling task-to-column movement
     if (isActiveATask && isOverAColumn) {
       setTasks((tasks) => {
         const activeIndex = tasks.findIndex((t) => t.id === activeId);
