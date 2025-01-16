@@ -24,20 +24,23 @@ Open the project in your browser: Open the provided link to view the project, fo
    - For building the user interface due to its flexibility and component-based architecture.
 - **TypeScript**: 
    - Provides type safety, which helps reduce bugs and improves developer experience.
--Vite: A fast and modern build tool for development and bundling, providing a great development experience with fast hot module replacement (HMR).
--@dnd-kit: A drag-and-drop library for React that enables seamless and accessible drag-and-drop functionality.
--Local Storage: To persist columns and tasks data even after a page reload.
+- **Vite**:
+  - A fast and modern build tool for development and bundling, providing a great development experience with fast hot module replacement (HMR).
+- **@dnd-kit**:
+   - A drag-and-drop library for React that enables seamless and accessible drag-and-drop functionality.
+- **Local Storage**:
+   - To persist columns and tasks data even after a page reload.
 
 ## Known Limitations / Trade-offs:
--Drag-and-Drop Performance: While drag-and-drop is a core feature, complex boards with many tasks may face performance issues.
--No Backend: This project uses only local storage for persistence. A real-world app would benefit from a backend to store data persistently across devices.
--Limited Accessibility: Although the app supports basic keyboard accessibility for drag-and-drop, some improvements can be made for full accessibility compliance.
+- **Drag-and-Drop Performance**: While drag-and-drop is a core feature, complex boards with many tasks may face performance issues.
+- **No Backend**: This project uses only local storage for persistence. A real-world app would benefit from a backend to store data persistently across devices.
+- **Limited Accessibility**: Although the app supports basic keyboard accessibilities, some improvements can be made for full accessibility compliance.
 
 ## Future Improvements:
--Backend Integration: Implement a backend (e.g., Node.js + Express or Firebase) to store and manage columns and tasks.
--User Authentication: Add user authentication to allow multiple users to use the board simultaneously and save their data.
--Advanced Task Filtering: Introduce advanced task filtering options (e.g., by deadline, priority, etc.).
--Task Comments/Attachments: Allow users to add comments or attachments to tasks for better collaboration.
+- **Backend Integration**: Implement a backend (e.g., Node.js + Express or Firebase) to store and manage columns and tasks.
+- **User Authentication**: Add user authentication to allow multiple users to use the board simultaneously and save their data.
+- **Advanced Task Filtering**: Introduce advanced task filtering options (e.g., by deadline, priority, etc.).
+- **Task Comments/Attachments**: Allow users to add comments or attachments to tasks for better collaboration.
 
 ## Time Spent
 
@@ -56,7 +59,7 @@ Open the project in your browser: Open the provided link to view the project, fo
 
 - **Bug Fixing and Testing**: 2 hours
   - Debugging issues with task movements and local storage.
-  - Testing responsiveness and overall functionality.
+  - Testing overall functionality.
 
 - **Documentation**: 0.5 hour
   - Writing the README file with setup instructions and project details.
