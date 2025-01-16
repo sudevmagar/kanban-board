@@ -20,10 +20,10 @@ Open the project in your browser: Open the provided link to view the project, fo
 
 ## Technology Choices and Rationale:
 
--**React**: 
-   -For building the user interface due to its flexibility and component-based architecture.
--**TypeScript**: 
-   -Provides type safety, which helps reduce bugs and improves developer experience.
+- **React**: 
+   - For building the user interface due to its flexibility and component-based architecture.
+- **TypeScript**: 
+   - Provides type safety, which helps reduce bugs and improves developer experience.
 -Vite: A fast and modern build tool for development and bundling, providing a great development experience with fast hot module replacement (HMR).
 -@dnd-kit: A drag-and-drop library for React that enables seamless and accessible drag-and-drop functionality.
 -Local Storage: To persist columns and tasks data even after a page reload.
