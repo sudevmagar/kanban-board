@@ -42,30 +42,6 @@ Open the project in your browser: Open the provided link to view the project, fo
 - **Advanced Task Filtering**: Introduce advanced task filtering options (e.g., by deadline, priority, etc.).
 - **Task Comments/Attachments**: Allow users to add comments or attachments to tasks for better collaboration.
 
-## Time Spent
-
-- **Project Setup**: 1 hours
-  - Initial setup with Vite and React.
-  - Configuring TypeScript support.
-
-- **UI Design and Layout**: 3.5 hours
-  - Designing the Kanban board layout.
-  - Styling the columns and task cards.
-
-- **Implementing Functionality**: 5 hours
-  - Adding drag-and-drop functionality with `@dnd-kit`.
-  - Setting up task and column management features (add, delete, update).
-  - Implementing local storage to persist data.
-
-- **Bug Fixing and Testing**: 2 hours
-  - Debugging issues with task movements and local storage.
-  - Testing overall functionality.
-
-- **Documentation**: 0.5 hour
-  - Writing the README file with setup instructions and project details.
-
-### Total Time Spent: 12 hours
-
 ## Live Demo
 
-Check out the live demo of the Kanban Board: [Live Demo Link] (https://sudevo7.github.io/kanban-board/) 
+Check out the live demo of the Kanban Board: [Live Demo Link] (https://kanban-board-two-gold.vercel.app/) 
